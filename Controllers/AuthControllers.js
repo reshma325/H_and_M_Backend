@@ -4,7 +4,7 @@ import Jwt from 'jsonwebtoken'
 
 export const login = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { email, password } = req.body.memberData;
      
         if (!email) return res.send(401).json({ success: false, message: "Please provide valid email to login" })
 
@@ -15,6 +15,7 @@ export const login = async (req, res) => {
         const memberPassword= await bcrypt.compare(password,member.password)
 
         if (!memberPassword) return res.status(401).json({ success: false, message: "Please provide correct passowrd to login!" });
+        console.log(member,"1")
      
         const token = await Jwt.sign({ id: member.id }, process.env.JWT_SECRET);
 
