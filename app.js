@@ -10,7 +10,7 @@ dotenv.config();
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json())
-const port=7000;
+const port=3000;
 
 
 app.use("/api/v1",router)
